@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DCGAN Face Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f5f9; margin: 0; color: #222; }
+    main { max-width: 720px; margin: 45px auto; padding: 28px; background: white;
+           border-radius: 16px; box-shadow: 0 8px 30px #0001; text-align: center; }
+    h1 { margin-top: 0; }
+    p { color: #555; line-height: 1.5; }
+    img { width: min(100%, 384px); image-rendering: auto; border-radius: 12px;
+          border: 1px solid #ddd; margin: 16px auto; display: block; }
+    button { background: #3157d5; color: white; border: 0; padding: 13px 22px;
+             font-size: 16px; border-radius: 8px; cursor: pointer; }
+    button:hover { background: #2445b3; }
+    .message { background: #fff4d6; padding: 12px; border-radius: 8px; }
+    small { color: #777; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>DCGAN Face Generator</h1>
+    <p>Generate a synthetic 64 × 64 face using a Generator trained on CelebA.</p>
+    {% if message %}<p class="message">{{ message }}</p>{% endif %}
+    {% if image_name %}
+      <img src="{{ url_for('static', filename='generated/' ~ image_name) }}"
+           alt="Generated synthetic face">
+      <small>Generated image — not a photograph of an identified person.</small>
+    {% endif %}
+    <form method="post">
+      <button type="submit">Generate Face</button>
+    </form>
+  </main>
+</body>
+</html>
